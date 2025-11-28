@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/bulan.png" type="image/x-icon">
+	<title>Good Night</title>  
+	<script src="vara.min.js"></script>
+
+<style>
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	background: linear-gradient(0.25turn, rgb(0, 0, 0), rgb(0, 0, 0));
+	height: 100vh;
+	overflow: hidden;
+}
+
+.love {
+    position: fixed;
+    fill: rgba(255, 105, 180, 0.9); /* Pink */
+    opacity: 0.9;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) scale(1);
+        opacity: 0;
+    }
+}
+
+#container{
+	width: 80%;
+	margin: 150px auto;
+	color: white;
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay src="jaz1.mp3"></audio>
+
+<div id="container"></div>
+
+<script>
+// LOVE SVG UTUH (natural, smooth)
+const svgHeart = `
+<svg viewBox="0 0 512 512">
+    <path d="M471.7 73.6c-54.5-46.4-136-38.3-186.4 13.7L256 116.6l-29.3-29.3C176.3 35.3 94.8 27.2 40.3 73.6c-62.8 53.5-66.1 149.8-9.9 207L239 489.7c9.4 9.4 24.6 9.4 33.9 0l208.6-209.1c56.2-57.2 52.9-153.5-9.8-207z"/>
+</svg>`;
+
+// FUNGSI MEMBUAT LOVE
+function createLove() {
+	for (let i = 0; i < 40; i++) {
+
+		let love = document.createElement("div");
+		love.classList.add("love");
+
+		// random ukuran
+		let size = Math.random() * 30 + 20; // 20–50px
+		love.style.width = size + "px";
+		love.style.height = size + "px";
+
+		love.style.left = Math.random() * 100 + "vw";
+		love.style.top = "-10vh";
+
+		// random durasi jatuh
+		let duration = Math.random() * 6 + 4; // 4–10s
+		love.style.animationDuration = duration + "s";
+
+		// random delay agar natural
+		love.style.animationDelay = Math.random() * 5 + "s";
+
+		love.innerHTML = svgHeart;
+		document.body.appendChild(love);
+	}
+}
+
+createLove();
+
+
+// TEKS BUCIN
+  	var fontSize = 40;
+  	if (window.screen.width > 700) 
+  		fontSize = 55 ;
+  	else if (window.screen.width > 1200)
+  		fontSize = 80; 
+  	var vara = new Vara(
+  		"#container",
+  		"https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
+  		[
+  		{
+  				text : "Cacaaa udah tidur ya?",
+  				y: 150,
+         	 	delay : 1400,
+  				fromCurrentPosition: {y:false},
+  				duration:1700
+  		},
+  		{
+  			text : "Good night, Tidur yang nyenyak yaa...",
+  			y: 150,
+  			fromCurrentPosition: {y:false},
+  			delay:1500,
+  			duration:2000
+  		},
+		{
+  			text : "Semangat buat hari ini, esok, dan seterusnya :)",
+  			y: 150,
+  			fromCurrentPosition: {y:false},
+  			delay:1600,
+  			duration:1500
+  		},
+		{
+  			text : "Kalau ada apa-apa, Cacaaa boleh cerita apapun itu ke aku",
+  			y: 150,
+  			fromCurrentPosition: {y:false},
+  			delay:1700,
+  			duration:2200
+  		},
+		{
+  			text : "Jangan sungkan atau ga enak, walaupun kita baru kenal",
+  			y: 150,
+  			fromCurrentPosition: {y:false},
+  			delay:1800,
+  			duration:2000
+  		},
+		{
+  			text : "Jangan merasa sendiri yaa, i'm here for you :)",
+  			y: 150,
+  			fromCurrentPosition: {y:false},
+  			delay:1900,
+  			duration:1800
+  		},
+		{
+  			text : "Semoga besok kamu bangun dengan hati yang bahagia ya :)",
+  			y: 150,
+  			fromCurrentPosition: {y:false},
+  			delay:2000,
+  			duration:2200
+  		},
+  		],
+
+  			{
+  				strokeWidth: 2,
+  				color:"#fff",
+  				fontSize:fontSize,
+  				textAlign:"center"
+  			}
+  		);
+  	vara.ready(function(){
+  		var erase = true;
+  		vara.animationEnd(function(i, o){
+  			if (i == "no_erase") erase = false; 
+  			if (erase) {
+  				o.container.style.transition = 
+  				"opacity 1s 1s";
+  				o.container.style.opacity = 0;
+  			}
+  		});
+  	});
+</script>
+
+</body>
+</html>
